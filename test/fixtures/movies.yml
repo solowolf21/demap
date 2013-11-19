@@ -4,19 +4,19 @@ one:
   title: Superman
   rating: PG-13
   total_gross: 1234124312349.99
-  description: This man is super cool!
-  released_on: 09/09/2007
+  description: This man is super cool! This man is super cool! This man is super cool! This man is super cool!
+  released_on: 2011-11-19
 
 two:
   title: Iron Man
   rating: PG-11
   total_gross: 3452345239.99
-  description: Iron man is super awesome!
-  released_on: 12/11/2005
+  description: Iron man is super awesome! Iron man is super awesome! Iron man is super awesome! Iron man is super awesome!
+  released_on: 2003-10-29
 
 three:
   title: Spider-man
   rating: PG
   total_gross: 2345239.99
-  description: Spider man is a dumb!
-  released_on: 10/30/2006
+  description: Spider man is a dumb! Spider man is a dumb! Spider man is a dumb! Spider man is a dumb!
+  released_on: 2009-01-25
