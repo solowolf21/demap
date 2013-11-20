@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  id: 1
   title: Superman
   rating: PG-13
-  total_gross: 1234124312349.99
+  total_gross: 4124312349.99
   description: This man is super cool! This man is super cool! This man is super cool! This man is super cool!
   released_on: 2011-11-19
 
 two:
+  id: 2
   title: Iron Man
   rating: PG-11
   total_gross: 3452345239.99
@@ -15,6 +17,7 @@ two:
   released_on: 2003-10-29
 
 three:
+  id: 3
   title: Spider-man
   rating: PG
   total_gross: 2345239.99
