@@ -1,7 +1,5 @@
 require 'test_helper'
-
-class MoviesControllerTest < ActionController::TestCase
-
+class MoviesHelperTest < ActionView::TestCase
   def setup
     @movie_1 = Movie.create_exemplar!(
         :title => 'Superman',
@@ -27,19 +25,8 @@ class MoviesControllerTest < ActionController::TestCase
     )
   end
 
-  def test_index
-    get :index
-    assert_response :success
-    assert_equal 3, assigns(:movies).size
-    assert_equal @movie_1, assigns(:movies)[0]
-    assert_equal @movie_2, assigns(:movies)[1]
-    assert_equal @movie_3, assigns(:movies)[2]
+  def test_format_total_gross
+    assert_equal '$1,234,124,312,349.00', view.format_total_gross(@movie_1)
+    assert_equal '<strong>Flop!</strong>', view.format_total_gross(@movie_3)
   end
-
-  def test_show
-    get :show, :id => @movie_1.id
-    assert_response :success
-    assert_equal @movie_1, assigns(:movie)
-  end
-
 end
