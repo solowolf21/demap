@@ -1,7 +1,7 @@
 <h1><%= pluralize(@movies.size, 'Movie') %></h1>
 <% @movies.each do |movie| %>
   <article>
-    <header><%= movie.title %></header>
+    <header><%= link_to movie.title, movie %></header>
     <p><%= truncate(movie.description, :length => 40, :seprator => ' ') %></p>
     <table>
       <tr>
