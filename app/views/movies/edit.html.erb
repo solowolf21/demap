@@ -1,0 +1,8 @@
+<%= simple_form_for @movie do |f| %>
+    <%= f.input :title, :label => 'Title' %>
+    <%= f.input :description, :label => 'Description' %>
+    <%= f.input :rating, :label => 'Rating' %>
+    <%= f.input :released_on, :label => 'Released on' %>
+    <%= f.input :total_gross, :label => 'Total Gross' %>
+    <%= f.submit %>
+<% end %>
