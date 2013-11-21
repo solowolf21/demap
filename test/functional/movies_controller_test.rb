@@ -83,6 +83,13 @@ class MoviesControllerTest < ActionController::TestCase
     assert_redirected_to assigns(:movie)
   end
 
+  def test_destroy
+    @movie = Movie.create_exemplar!
+    assert_difference ('Movie.count'), -1 do
+      delete :destroy, :id => @movie.id
+    end
+  end
+
 private
   def params
     {:movie => {
