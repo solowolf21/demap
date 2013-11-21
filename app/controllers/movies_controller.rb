@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @moive = Movie.new(movie_params)
+    @movie = Movie.new(movie_params)
     @movie.save
     redirect_to @movie
   end
