@@ -4,4 +4,8 @@ class Movie < ActiveRecord::Base
   def flop?
     self.total_gross < 50000000
   end
+
+  def self.released
+    Movie.where('released_on < ?', Date.today).order('released_on desc')
+  end
 end

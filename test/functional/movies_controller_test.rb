@@ -8,7 +8,7 @@ class MoviesControllerTest < ActionController::TestCase
         :rating => 'PG-13',
         :total_gross => '1234124312349.99',
         :description => 'This man is super cool! This man is super cool! This man is super cool! This man is super cool!',
-        :released_on => '2011-11-19'
+        :released_on => '2013-11-19'
     )
 
     @movie_2 = Movie.create_exemplar!(
@@ -16,7 +16,7 @@ class MoviesControllerTest < ActionController::TestCase
         :rating => 'PG-11',
         :total_gross => '898124312349.99',
         :description => 'Iron man is super awesome! Iron man is super awesome! Iron man is super awesome! Iron man is super awesome!',
-        :released_on => '2002-01-29'
+        :released_on => '2011-01-29'
     )
     @movie_3 = Movie.create_exemplar!(
         :title => 'Spiderman',
@@ -28,6 +28,7 @@ class MoviesControllerTest < ActionController::TestCase
   end
 
   def test_index
+    movie = Movie.create_exemplar!(:released_on => Date.today >> 1)
     get :index
     assert_response :success
     assert_equal 3, assigns(:movies).size
@@ -50,7 +51,7 @@ class MoviesControllerTest < ActionController::TestCase
     assert_equal @movie_1, assigns(:movie)
     assert_equal 'Superman', @movie_1.title
     assert_equal 'PG-13', @movie_1.rating
-    assert_equal 'Sat, 19 Nov 2011', @movie_1.released_on.inspect
+    assert_equal 'Tue, 19 Nov 2013', @movie_1.released_on.inspect
     assert_equal 'This man is super cool! This man is super cool! This man is super cool! This man is super cool!', @movie_1.description
     assert_equal 1234124312349, @movie_1.total_gross
   end
@@ -70,9 +71,11 @@ class MoviesControllerTest < ActionController::TestCase
   end
 
   def test_new
-    get :new
-    assert_response :success
-    assert_not_nil assigns(:movie)
+    assert_no_difference ('Movie.count') do
+      get :new
+      assert_response :success
+      assert_not_nil assigns(:movie)
+    end
   end
 
   def test_create
