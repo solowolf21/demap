@@ -10,19 +10,27 @@ class MovieTest < ActiveSupport::TestCase
 
   def test_setter_getter
     movie = Movie.create_exemplar!
-    movie.title       = 'Flix'
-    movie.rating      = 'PG-88'
-    movie.description = 'The movie is fair.'
-    movie.released_on = '2011-08-06'
-    movie.total_gross = 7777777
+    movie.title           = 'Flix'
+    movie.rating          = 'PG-88'
+    movie.description     = 'The movie is fair.'
+    movie.released_on     = '2011-08-06'
+    movie.total_gross     = 7777777
+    movie.cast            = 'Tom'
+    movie.director        = 'Mike Bay'
+    movie.duration        = '2h30min'
+    movie.image_file_name = 'transformer.jpg'
     movie.save!
 
     movie.reload
-    assert_equal 'Flix', movie.title
-    assert_equal 'PG-88', movie.rating
+    assert_equal 'Flix',               movie.title
+    assert_equal 'PG-88',              movie.rating
     assert_equal 'The movie is fair.', movie.description
-    assert_equal 'Sat, 06 Aug 2011', movie.released_on.inspect
-    assert_equal 7777777, movie.total_gross
+    assert_equal 'Sat, 06 Aug 2011',   movie.released_on.inspect
+    assert_equal 7777777,              movie.total_gross
+    assert_equal 'Tom',                movie.cast
+    assert_equal 'Mike Bay',           movie.director
+    assert_equal '2h30min',            movie.duration
+    assert_equal 'transformer.jpg',    movie.image_file_name
   end
 
   def test_released
