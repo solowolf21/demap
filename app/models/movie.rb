@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  attr_accessible :rating, :title, :total_gross, :description, :released_on
+  attr_accessible :rating, :title, :total_gross, :description, :released_on, :cast, :director, :duration, :image_file_name
 
   def flop?
     self.total_gross < 50000000

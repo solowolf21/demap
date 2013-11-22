@@ -1,8 +1,9 @@
 <h2><%= @movie.title %></h2>
+<h3><%= image_for @movie%></h3>
 <p><%= @movie.description %></p>
 <table>
   <tr>
-    <th>Realsed:</th>
+    <th>Released:</th>
     <td><%= @movie.released_on.to_s + ' (' + time_ago_in_words(@movie.released_on) +')' %></td>
   </tr>
   <tr>
@@ -12,6 +13,18 @@
   <tr>
     <th>Total Gross:</th>
     <td><%= format_total_gross(@movie) %></td>
+  </tr>
+  <tr>
+    <th>Cast:</th>
+    <td><%= @movie.cast %></td>
+  </tr>
+  <tr>
+    <th>Director:</th>
+    <td><%= @movie.director %></td>
+  </tr>
+  <tr>
+    <th>Duration:</th>
+    <td><%= @movie.duration %></td>
   </tr>
 </table>
 
