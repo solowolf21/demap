@@ -10,16 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131119174053) do
+ActiveRecord::Schema.define(:version => 20131122015300) do
 
   create_table "movies", :force => true do |t|
     t.string   "title"
     t.string   "rating"
-    t.decimal  "total_gross", :precision => 10, :scale => 0
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.decimal  "total_gross",     :precision => 10, :scale => 0
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.text     "description"
     t.date     "released_on"
+    t.string   "cast"
+    t.string   "director"
+    t.string   "duration"
+    t.string   "image_file_name"
   end
 
 end
