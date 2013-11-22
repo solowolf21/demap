@@ -70,9 +70,11 @@ class MoviesControllerTest < ActionController::TestCase
   end
 
   def test_new
-    get :new
-    assert_response :success
-    assert_not_nil assigns(:movie)
+    assert_no_difference ('Movie.count') do
+      get :new
+      assert_response :success
+      assert_not_nil assigns(:movie)
+    end
   end
 
   def test_create
