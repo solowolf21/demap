@@ -16,4 +16,5 @@
 </table>
 
 <%= link_to 'All Movies', movies_path %> |
-<%= link_to 'Edit', edit_movie_path(@movie) %>
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Delete', @movie, :method => :delete, :data => { :confirm => 'Are you sure?' } %>

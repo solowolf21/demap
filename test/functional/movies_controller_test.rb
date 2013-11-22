@@ -42,4 +42,64 @@ class MoviesControllerTest < ActionController::TestCase
     assert_equal @movie_1, assigns(:movie)
   end
 
+  def test_edit
+    get :edit, :id => @movie_1.id
+
+    assert_response :success
+    assert_template 'edit'
+    assert_equal @movie_1, assigns(:movie)
+    assert_equal 'Superman', @movie_1.title
+    assert_equal 'PG-13', @movie_1.rating
+    assert_equal 'Sat, 19 Nov 2011', @movie_1.released_on.inspect
+    assert_equal 'This man is super cool! This man is super cool! This man is super cool! This man is super cool!', @movie_1.description
+    assert_equal 1234124312349, @movie_1.total_gross
+  end
+
+  def test_update
+    assert_no_difference ('Movie.count') do
+      put :update, params.merge(:id => @movie_1.id)
+    end
+
+    @movie_1.reload
+
+    assert_equal 'Donut', @movie_1.title
+    assert_equal 'PG-66', @movie_1.rating
+    assert_equal 'Mon, 05 Sep 2011', @movie_1.released_on.inspect
+    assert_equal 'Donut is so sweet!', @movie_1.description
+    assert_equal 987654321, @movie_1.total_gross
+  end
+
+  def test_new
+    assert_no_difference ('Movie.count') do
+      get :new
+      assert_response :success
+      assert_not_nil assigns(:movie)
+    end
+  end
+
+  def test_create
+    assert_difference ('Movie.count') do
+      post :create, params
+    end
+
+    assert_redirected_to assigns(:movie)
+  end
+
+  def test_destroy
+    @movie = Movie.create_exemplar!
+    assert_difference ('Movie.count'), -1 do
+      delete :destroy, :id => @movie.id
+    end
+  end
+
+private
+  def params
+    {:movie => {
+        :title => 'Donut',
+        :rating => 'PG-66',
+        :released_on => '2011-09-05',
+        :description => 'Donut is so sweet!',
+        :total_gross => 987654321
+    }}
+  end
 end
