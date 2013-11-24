@@ -32,3 +32,9 @@ article.movie {
   font-weight: bolder;
   background-color: lightcyan;
 }
+
+label.required {
+  abbr {
+    color: red;
+  }
+}

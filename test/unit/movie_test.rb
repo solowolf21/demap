@@ -45,4 +45,45 @@ class MovieTest < ActiveSupport::TestCase
     assert_equal movie_1, movies[1]
     assert_equal movie_4, movies[2]
   end
+
+  def test_validations
+    movie = Movie.new
+
+    assert !movie.valid?
+    assert_no_difference ('Movie.count') do
+      movie.save
+    end
+    assert_equal ["can't be blank"], movie.errors[:title]
+    assert_equal ["can't be blank"], movie.errors[:released_on]
+    assert_equal ["can't be blank"], movie.errors[:duration]
+    assert_equal ["is too short (minimum is 25 characters)"], movie.errors[:description]
+    assert_equal ["is not a number"], movie.errors[:total_gross]
+    assert_equal ["is not a valid rating."], movie.errors[:rating]
+
+    movie.title = 'The Avengers'
+    movie.released_on = '2012-05-04'
+    movie.duration = '142 min'
+    movie.description = 'The ultimate Super Hero team-up of a lifetime!'
+    movie.total_gross = -2
+    movie.rating = 'PG-13'
+
+    assert !movie.valid?
+    assert_no_difference ('Movie.count') do
+      movie.save
+    end
+    assert_equal [], movie.errors[:title]
+    assert_equal [], movie.errors[:released_on]
+    assert_equal [], movie.errors[:duration]
+    assert_equal [], movie.errors[:description]
+    assert_equal ["must be greater than or equal to 0"], movie.errors[:total_gross]
+    assert_equal [], movie.errors[:rating]
+
+    movie.total_gross = 100000000
+    movie.image_file_name = 'avengers.jpg'
+    assert movie.valid?
+
+    assert_difference ('Movie.count') do
+      movie.save
+    end
+  end
 end
