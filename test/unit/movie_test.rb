@@ -63,12 +63,12 @@ class MovieTest < ActiveSupport::TestCase
     assert_no_difference ('Movie.count') do
       movie.save
     end
-    assert_equal [], movie.errors[:title]
-    assert_equal [], movie.errors[:released_on]
-    assert_equal [], movie.errors[:duration]
-    assert_equal [], movie.errors[:description]
+    assert movie.errors[:title].empty?
+    assert movie.errors[:released_on].empty?
+    assert movie.errors[:duration].empty?
+    assert movie.errors[:description].empty?
     assert_equal ["must be greater than or equal to 0"], movie.errors[:total_gross]
-    assert_equal [], movie.errors[:rating]
+    assert movie.errors[:rating].empty?
 
     movie.total_gross = 100000000
     movie.image_file_name = 'avengers.jpg'
