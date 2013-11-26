@@ -63,8 +63,8 @@ class MoviesControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal 3, assigns(:movies).size
     assert_equal @movie_1, assigns(:movies)[0]
-    assert_equal @movie_3, assigns(:movies)[1]
-    assert_equal @movie_2, assigns(:movies)[2]
+    assert_equal @movie_2, assigns(:movies)[1]
+    assert_equal @movie_3, assigns(:movies)[2]
   end
 
   def test_show
