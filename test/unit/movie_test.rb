@@ -11,8 +11,8 @@ class MovieTest < ActiveSupport::TestCase
   def test_setter_getter
     movie = Movie.create_exemplar!
     movie.title           = 'Flix'
-    movie.rating          = 'PG-88'
-    movie.description     = 'The movie is fair.'
+    movie.rating          = 'PG-13'
+    movie.description     = 'The movie is fair. Watch it if you really have time.'
     movie.released_on     = '2011-08-06'
     movie.total_gross     = 7777777
     movie.cast            = 'Tom'
@@ -23,8 +23,8 @@ class MovieTest < ActiveSupport::TestCase
 
     movie.reload
     assert_equal 'Flix',               movie.title
-    assert_equal 'PG-88',              movie.rating
-    assert_equal 'The movie is fair.', movie.description
+    assert_equal 'PG-13',              movie.rating
+    assert_equal 'The movie is fair. Watch it if you really have time.', movie.description
     assert_equal 'Sat, 06 Aug 2011',   movie.released_on.inspect
     assert_equal 7777777,              movie.total_gross
     assert_equal 'Tom',                movie.cast
@@ -58,7 +58,7 @@ class MovieTest < ActiveSupport::TestCase
     assert_equal ["can't be blank"], movie.errors[:duration]
     assert_equal ["is too short (minimum is 25 characters)"], movie.errors[:description]
     assert_equal ["is not a number"], movie.errors[:total_gross]
-    assert_equal ["is not a valid rating."], movie.errors[:rating]
+    assert_equal ["is not a valid rating"], movie.errors[:rating]
 
     movie.title = 'The Avengers'
     movie.released_on = '2012-05-04'

@@ -61,15 +61,11 @@ class MoviesControllerTest < ActionController::TestCase
     assert_response :success
     assert_template 'edit'
     assert_equal @movie_1, assigns(:movie)
-    assert_equal 'Iron Man',                                                      @movie_1.title
-    assert_equal 'PG-13',                                                         @movie_1.rating
+    assert_equal 'Iron Man', @movie_1.title
+    assert_equal 'PG-13', @movie_1.rating
+    assert_equal 'Fri, 02 May 2008', @movie_1.released_on.inspect
     assert_equal 'Tony Stark builds an armored suit to fight the throes of evil', @movie_1.description
-    assert_equal 'Fri, 02 May 2008',                                              @movie_1.released_on.inspect
-    assert_equal 318412101.00,                                                    @movie_1.total_gross
-    assert_equal "Robert Downey Jr., Gwyneth Paltrow and Terrence Howard",        @movie_1.cast
-    assert_equal 'Jon Favreau',                                                   @movie_1.director
-    assert_equal '126 min',                                                       @movie_1.duration
-    assert_equal 'ironman.jpg',                                                   @movie_1.image_file_name
+    assert_equal 318412101, @movie_1.total_gross
   end
 
   def test_update
@@ -79,15 +75,12 @@ class MoviesControllerTest < ActionController::TestCase
 
     @movie_1.reload
 
-    assert_equal 'Donut',              @movie_1.title
-    assert_equal 'PG-66',              @movie_1.rating
-    assert_equal 'Mon, 05 Sep 2011',   @movie_1.released_on.inspect
-    assert_equal 'Donut is so sweet!', @movie_1.description
-    assert_equal 987654321,            @movie_1.total_gross
-    assert_equal 'Tom',                @movie_1.cast
-    assert_equal 'Mike Bay',           @movie_1.director
-    assert_equal '100min',             @movie_1.duration
-    assert_equal 'transformer.jpg',    @movie_1.image_file_name
+    assert_equal 'Movie successfully updated!', flash[:notice]
+    assert_equal 'Donut', @movie_1.title
+    assert_equal 'PG-13', @movie_1.rating
+    assert_equal 'Mon, 05 Sep 2011', @movie_1.released_on.inspect
+    assert_equal 'This Donut is so sweet! Really really sweet!', @movie_1.description
+    assert_equal 987654321, @movie_1.total_gross
   end
 
   def test_new
@@ -103,17 +96,8 @@ class MoviesControllerTest < ActionController::TestCase
       post :create, params
     end
 
-    assert_equal 'Donut',              assigns(:movie).title
-    assert_equal 'PG-66',              assigns(:movie).rating
-    assert_equal 'Mon, 05 Sep 2011',   assigns(:movie).released_on.inspect
-    assert_equal 'Donut is so sweet!', assigns(:movie).description
-    assert_equal 987654321,            assigns(:movie).total_gross
-    assert_equal 'Tom',                assigns(:movie).cast
-    assert_equal 'Mike Bay',           assigns(:movie).director
-    assert_equal '100min',             assigns(:movie).duration
-    assert_equal 'transformer.jpg',    assigns(:movie).image_file_name
-
     assert_redirected_to assigns(:movie)
+    assert_equal 'Movie successfully created!', flash[:notice]
   end
 
   def test_destroy
@@ -121,20 +105,19 @@ class MoviesControllerTest < ActionController::TestCase
     assert_difference ('Movie.count'), -1 do
       delete :destroy, :id => @movie.id
     end
+    assert_redirected_to movies_path
+    assert_equal 'Movie successfully destroyed!', flash[:notice]
   end
 
 private
   def params
     {:movie => {
         :title => 'Donut',
-        :rating => 'PG-66',
+        :rating => 'PG-13',
         :released_on => '2011-09-05',
-        :description => 'Donut is so sweet!',
+        :description => 'This Donut is so sweet! Really really sweet!',
         :total_gross => 987654321,
-        :cast => 'Tom',
-        :director => 'Mike Bay',
-        :duration => '100min',
-        :image_file_name => 'transformer.jpg'
+        :duration => '100min'
     }}
   end
 end
