@@ -31,6 +31,9 @@
       <th>Duration:</th>
       <td><%= @movie.duration %></td>
     </tr>
+    <tr>
+      <td><%= link_to pluralize(@movie.reviews.size, 'review'),  movie_reviews_path(@movie)%></td>
+    </tr>
   </table>
 
   <%= link_to 'Edit', edit_movie_path(@movie) %> |
