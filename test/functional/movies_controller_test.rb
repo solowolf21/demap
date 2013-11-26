@@ -106,7 +106,7 @@ class MoviesControllerTest < ActionController::TestCase
       delete :destroy, :id => @movie.id
     end
     assert_redirected_to movies_path
-    assert_equal 'Movie successfully destroyed!', flash[:notice]
+    assert_equal 'Movie successfully destroyed!', flash[:alert]
   end
 
 private

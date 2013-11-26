@@ -39,10 +39,18 @@ label.required {
   }
 }
 
-.flash-notice {
-  background-color: #e0f0e0;
+.flash .notice {
   border: 1px solid #d0e6d0;
-  color: #409040;
   padding: 1em;
   font-size: 150%;
+  background-color: #e0f0e0;
+  color: #409040;
+}
+
+.flash .alert {
+  border: 1px solid #d0e6d0;
+  padding: 1em;
+  font-size: 150%;
+  background-color: #ffe8e0;
+  color: red;
 }
