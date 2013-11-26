@@ -10,11 +10,17 @@
 <%= render 'layouts/header' %>
 <%= render 'layouts/sidebar' %>
 
-<% if flash[:notice] %>
-    <div class='flash-notice'>
-      <%= flash[:notice] %>
-    </div>
-<% end %>
+<div class='flash'>
+  <% if flash[:notice] %>
+      <div class='notice'>
+        <%= flash[:notice] %>
+      </div>
+  <% elsif flash[:alert] %>
+      <div class='alert'>
+        <%= flash[:alert] %>
+      </div>
+  <% end %>
+</div>
 
 <div style="padding-left: 5em">
     <%= yield %>

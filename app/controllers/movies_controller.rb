@@ -38,8 +38,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     @movie.destroy
-    flash[:notice] = 'Movie successfully destroyed!'
-    redirect_to movies_path
+    redirect_to movies_path, :alert => 'Movie successfully destroyed!'
   end
 
 private
