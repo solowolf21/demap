@@ -9,7 +9,7 @@ class Movie < ActiveRecord::Base
       :with => /\w+.(gif|jpg|png)\z/i,
       :message => 'must reference a GIF, JPG, or PNG image'
   }
-  validates :rating, :inclusion => { :in => RATINGS, :message=> 'is not a valid rating.'}
+  validates :rating, :inclusion => { :in => RATINGS, :message=> 'is not a valid rating'}
 
   def flop?
     self.total_gross < 50000000

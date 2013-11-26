@@ -8,22 +8,25 @@ class MoviesControllerTest < ActionController::TestCase
         :rating => 'PG-13',
         :total_gross => '1234124312349.99',
         :description => 'This man is super cool! This man is super cool! This man is super cool! This man is super cool!',
-        :released_on => '2013-11-19'
+        :released_on => '2013-11-19',
+        :duration => '150min'
     )
 
     @movie_2 = Movie.create_exemplar!(
         :title => 'Iron man',
-        :rating => 'PG-11',
+        :rating => 'NC-17',
         :total_gross => '898124312349.99',
         :description => 'Iron man is super awesome! Iron man is super awesome! Iron man is super awesome! Iron man is super awesome!',
-        :released_on => '2011-01-29'
+        :released_on => '2011-01-29',
+        :duration => '120min'
     )
     @movie_3 = Movie.create_exemplar!(
         :title => 'Spiderman',
         :rating => 'PG',
         :total_gross => '123419.99',
         :description => 'Spider man is a dumb! Spider man is a dumb! Spider man is a dumb! Spider man is a dumb!',
-        :released_on => '2009-10-13'
+        :released_on => '2009-10-13',
+        :duration => '140min'
     )
   end
 
@@ -63,10 +66,11 @@ class MoviesControllerTest < ActionController::TestCase
 
     @movie_1.reload
 
+    assert_equal 'Movie successfully updated!', flash[:notice]
     assert_equal 'Donut', @movie_1.title
-    assert_equal 'PG-66', @movie_1.rating
+    assert_equal 'PG-13', @movie_1.rating
     assert_equal 'Mon, 05 Sep 2011', @movie_1.released_on.inspect
-    assert_equal 'Donut is so sweet!', @movie_1.description
+    assert_equal 'This Donut is so sweet! Really really sweet!', @movie_1.description
     assert_equal 987654321, @movie_1.total_gross
   end
 
@@ -84,23 +88,26 @@ class MoviesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to assigns(:movie)
+    assert_equal 'Movie successfully created!', flash[:notice]
   end
 
   def test_destroy
-    @movie = Movie.create_exemplar!
     assert_difference ('Movie.count'), -1 do
-      delete :destroy, :id => @movie.id
+      delete :destroy, :id => @movie_1.id
     end
+    assert_redirected_to movies_path
+    assert_equal 'Movie successfully destroyed!', flash[:notice]
   end
 
 private
   def params
     {:movie => {
         :title => 'Donut',
-        :rating => 'PG-66',
+        :rating => 'PG-13',
         :released_on => '2011-09-05',
-        :description => 'Donut is so sweet!',
-        :total_gross => 987654321
+        :description => 'This Donut is so sweet! Really really sweet!',
+        :total_gross => 987654321,
+        :duration => '100min'
     }}
   end
 end
