@@ -11,11 +11,17 @@ class Movie < ActiveRecord::Base
   }
   validates :rating, :inclusion => { :in => RATINGS, :message=> 'is not a valid rating'}
 
+  has_many :reviews, :dependent => :destroy
+
   def flop?
     self.total_gross < 50000000
   end
 
   def self.released
     Movie.where('released_on < ?', Date.today).order('released_on desc')
+  end
+
+  def average_stars
+    reviews.average(:stars)
   end
 end

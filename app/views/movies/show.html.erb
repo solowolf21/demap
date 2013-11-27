@@ -3,6 +3,10 @@
     <h2><%= @movie.title %></h2>
 
     <h3><%= image_for @movie %></h3>
+    <h3>Average Review</h3>
+    <p>
+      <%= format_average_stars(@movie) %>
+    </p>
     <label>Description:</label>
     <p><%= @movie.description %></p>
   </header>
@@ -30,6 +34,10 @@
     <tr>
       <th>Duration:</th>
       <td><%= @movie.duration %></td>
+    </tr>
+    <tr>
+      <td><%= link_to pluralize(@movie.reviews.size, 'review'),  movie_reviews_path(@movie)%></td>
+      <td><%= link_to 'Write a Review', new_movie_review_path(@movie) %></td>
     </tr>
   </table>
 

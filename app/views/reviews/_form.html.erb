@@ -1,0 +1,11 @@
+<%= simple_form_for @movie, :url => movie_reviews_path(@movie), :method => :post do |mf| %>
+    <%= render 'shared/errors', :object => @review %>
+    <%= mf.simple_fields_for :reviews do |f| %>
+        <%= f.input :name, :autofocus => true %>
+        <%= f.input :stars, :as => :select, :collection => Review::STARS, :prompt => 'Pick one' %>
+        <%= f.input :comment, :as => :text, :input_html => {:rows => 5} %>
+
+        <%= f.button :submit, :value => 'Submit' %> |
+        <%= link_to 'Cancel', @movie %>
+    <% end %>
+<% end %>
