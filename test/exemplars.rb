@@ -13,7 +13,7 @@ class Exemplars
 
   exemplify Review do |obj, count, overrides|
     obj.name = "Reviewer#{count}Nmane"
-    obj.stars = [1, 2, 3, 4, 5].sample
+    obj.stars = overrides.delete(:stars) || [1, 2, 3, 4, 5].sample
     obj.comment = "It's pretty good."
     obj.movie = overrides.delete(:movie) || Movie.create_exemplar!
   end
