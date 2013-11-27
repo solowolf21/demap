@@ -3,6 +3,10 @@
     <h2><%= @movie.title %></h2>
 
     <h3><%= image_for @movie %></h3>
+    <h3>Average Review</h3>
+    <p>
+      <%= format_average_stars(@movie) %>
+    </p>
     <label>Description:</label>
     <p><%= @movie.description %></p>
   </header>
