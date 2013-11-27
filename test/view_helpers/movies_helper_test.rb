@@ -38,12 +38,24 @@ class MoviesHelperTest < ActionView::TestCase
   end
 
   def test_format_total_gross
-    assert_equal '$318,412,101.00', view.format_total_gross(@movie_1)
+    assert_equal '$1,234,124,312,349.00', view.format_total_gross(@movie_1)
     assert_equal '<strong>Flop!</strong>', view.format_total_gross(@movie_3)
   end
 
-  def test_image_for
-    assert_equal '<img alt="Ironman" src="/assets/ironman.jpg" />', view.image_for(@movie_1)
-    assert_equal '<img alt="Placeholder" src="/assets/placeholder.png" />', view.image_for(@movie_3)
+  def test_format_average_stars
+    assert_equal '<strong>No reviews</strong>', view.format_average_stars(@movie_1)
+
+    Review.create_exemplar!(:movie => @movie_1, :stars => 1)
+    Review.create_exemplar!(:movie => @movie_1, :stars => 2)
+    Review.create_exemplar!(:movie => @movie_1, :stars => 3)
+
+    @movie_1.reload
+    assert_equal '2.0 stars', view.format_average_stars(@movie_1)
+
+    Review.create_exemplar!(:movie => @movie_1, :stars => 5)
+
+    @movie_1.reload
+    assert_equal '2.8 stars', view.format_average_stars(@movie_1)
   end
+
 end
