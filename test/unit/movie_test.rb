@@ -86,4 +86,15 @@ class MovieTest < ActiveSupport::TestCase
       movie.save
     end
   end
+
+  def test_average_stars
+    @movie = Movie.create_exemplar!
+    assert_nil @movie.average_stars
+
+    Review.create_exemplar!(:movie => @movie, :stars => 1)
+    Review.create_exemplar!(:movie => @movie, :stars => 2)
+    Review.create_exemplar!(:movie => @movie, :stars => 3)
+
+    assert_equal 2, @movie.average_stars
+  end
 end
