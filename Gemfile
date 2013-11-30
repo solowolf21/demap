@@ -7,6 +7,7 @@ gem 'mysql2'
 gem 'json'
 gem 'simple_form'
 gem 'strong_parameters'
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.
