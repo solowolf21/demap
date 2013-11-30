@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.14'
 
-gem 'mysql2'
-
 gem 'json'
 gem 'simple_form'
 gem 'strong_parameters'
@@ -21,4 +19,9 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'test-unit'
   gem 'mocha', :require => false
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'pg'
 end
