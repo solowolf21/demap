@@ -9,6 +9,10 @@
 <body>
 <%= render 'layouts/header' %>
 <%= render 'layouts/sidebar' %>
+<ul class="hmenu">
+  <%= render 'devise/menu/registration_items' %>
+  <%= render 'devise/menu/login_items' %>
+</ul>
 
 <div class='flash'>
   <% if flash[:notice] %>
