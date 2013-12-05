@@ -62,6 +62,7 @@ GEM
     multi_json (1.8.2)
     mysql2 (0.3.14)
     orm_adapter (0.0.7)
+    pg (0.17.0)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -129,6 +130,7 @@ DEPENDENCIES
   mocha
   mysql2
   orm_adapter
+  pg
   rails (= 3.2.14)
   sass-rails (~> 3.2.3)
   simple_form
