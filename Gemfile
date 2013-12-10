@@ -7,6 +7,8 @@ gem 'simple_form'
 gem 'strong_parameters'
 gem 'devise'
 gem 'orm_adapter'
+gem 'ae_page_objects'
+gem 'capybara'
 
 # Gems used only for assets and not required
 # in production environments by default.
